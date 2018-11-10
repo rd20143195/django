@@ -1,0 +1,30 @@
+<html>
+ <head>
+ <title>
+ From Excel
+ </title>
+ <script language="javascript">
+ function GetData(cell,row){
+ var excel = new ActiveXObject("Excel.Application");
+ var excel_file = excel.Workbooks.Open("E:/etc/words.xlsx");
+ var excel_sheet = excel.Worksheets("Sheet1");
+ var data = excel_sheet.Cells(cell,row).Value;
+ document.getElementById('div1').innerText =data;
+}
+</script>
+</head>
+
+<body>
+
+<div id="div1" style="background: #DFDFFF; width:'100%';" align="center">
+Click buttons to fetch data from excel
+</div>
+
+<input name="Button1" type="button" onClick="GetData(1,1)" value="button1">
+<input name="Button2" type="button" onClick="GetData(1,2)" value="button2">
+<input name="Button3" type="button" onClick="GetData(2,1)" value="button3">
+<input name="Button4" type="button" onClick="GetData(2,2)" value="button4">
+
+
+</body>
+</html>

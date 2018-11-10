@@ -1,0 +1,68 @@
+{% block content %}
+
+<script type="text/javascript" >
+	function get_data() {
+		function readTextFile(file, callback) {
+    	var rawFile = new XMLHttpRequest();
+   	 	rawFile.overrideMimeType("application/json");
+    	rawFile.open("GET", file, true);
+    	rawFile.onreadystatechange = function() {
+        	if (rawFile.readyState === 4 && rawFile.status == "200") {
+            	callback(rawFile.responseText);
+        	}
+    	}
+    	rawFile.send(null);
+	}
+
+readTextFile("json_try1.json", function(text){
+    var data = JSON.parse(text);
+    document.write(data);
+});
+// 	var jsonData = [
+// {
+// news_id:"1",
+// news_title:"new_title1",
+// news_link:"news_link1",
+// search_word:"search_word1",
+// },
+// {
+// news_id:"2",
+// news_title:"new_title2",
+// news_link:"news_link2",
+// search_word:"search_word2",
+// },
+// {
+// news_id:"3",
+// news_title:"new_title3",
+// news_link:"news_link3",
+// search_word:"search_word3",
+// },
+// {
+// news_id:"4",
+// news_title:"new_title4",
+// news_link:"news_link4",
+// search_word:"search_word4",
+// }
+// ];
+// for(var obj in jsonData){
+//     if(jsonData.hasOwnProperty(obj)){
+//     for(var prop in jsonData[obj]){
+//         if(jsonData[obj].hasOwnProperty(prop)){
+//            document.write(jsonData[obj][prop]+"\n");
+//         		}
+//     		}
+//     	document.write("<br>")
+// 		}
+// 	}
+// }
+
+</script>
+
+<h1>Today's news by CoE-AA</h1>
+<form role="form" action="" method="post">
+    {% csrf_token %}
+    <script >get_data();</script><br>
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
